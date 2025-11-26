@@ -47,86 +47,8 @@ SELECT column1, column2 FROM table_name WHERE condition;
 ```
 **Question 1**
 --
-Update the reorder level to 40 pieces for all products belonging to the 'Grocery' category in the products table.
-```
-PRODUCTS TABLE
+Write a SQL statement to change the EMAIL and COMMISSION_PCT column of the following EMPLOYEES table with 'not available' and 0.55 for those employees whose DEPARTMENT_ID is 110.
 
-name               type
------------------  ---------------
-product_id         INT
-product_name       VARCHAR(100)
-category           VARCHAR(50)
-cost_price         DECIMAL(10,2)
-sell_price         DECIMAL(10,2)
-reorder_lvl        INT
-quantity           INT
-supplier_id        INT
-```
-```sql
-update products
-set reorder_lvl='40'
-where category='Grocery'
-```
-
-**Output:**
-
-<img width="1254" height="365" alt="image" src="https://github.com/user-attachments/assets/c127ad18-08ff-4267-94a0-aa2b7e2bf0fa" />
-
-
-**Question 2**
-Decrease the reorder level by 30 percent where the product name contains 'cream' and quantity in stock is higher than reorder level in the products table.
-```
-PRODUCTS TABLE
-
-name               type
------------------  ---------------
-product_id         INT
-product_name       VARCHAR(100)
-category           VARCHAR(50)
-cost_price         DECIMAL(10,2)
-sell_price         DECIMAL(10,2)
-reorder_lvl        INT
-quantity           INT
-supplier_id        INT
-
-```
-```sql
-update products
-set reorder_lvl = reorder_lvl * 0.70
-where product_name LIKE '%cream%' AND quantity > reorder_lvl
-```
-
-**Output:**
-
-<img width="1290" height="476" alt="image" src="https://github.com/user-attachments/assets/dfbe503d-2643-4f43-89d0-41cb97e8d1d5" />
-
-
-**Question 3**
----
-Write a SQL statement to update the product_name as 'Grapefruit' whose product_id is 4 in the products table.
-```
-products table
-
----------------
-product_id
-product_name
-category_id
-availability
-```
-```sql
-update products
-set product_name='Grapefruit'
-where product_id=4
-```
-
-**Output:**
-
-<img width="1050" height="234" alt="image" src="https://github.com/user-attachments/assets/463d53fc-8d32-4cea-8778-d933878c0834" />
-
-**Question 4**
----
-Write a SQL statement to change the first_name column of employees table with 'John' for those employees whose department_id is 80 and gets a commission_pct below 0.35.
-```
 Employees table
 
 ---------------
@@ -141,164 +63,183 @@ salary
 commission_pct
 manager_id
 department_id
-```
 
 ```sql
-update employees
-set first_name='John'
-where department_id=80 and commission_pct < 0.35
+UPDATE EMPLOYEES
+SET EMAIL = 'not available',
+    COMMISSION_PCT = 0.55
+WHERE DEPARTMENT_ID = 110;
 ```
 
 **Output:**
 
-<img width="1281" height="520" alt="image" src="https://github.com/user-attachments/assets/1b9abd4d-8360-46a2-ac76-92994f5a9d9d" />
+<img width="1219" height="452" alt="image" src="https://github.com/user-attachments/assets/81a3a6af-a002-4f21-8cdd-f912c8628f25" />
+
+
+**Question 2**
+---
+Write a SQL statement to Update the grade of all customers in Chennai city as  5. 
+
+```sql
+UPDATE Customer
+SET grade = 5
+WHERE city = 'Chennai';
+```
+
+**Output:**
+
+<img width="1197" height="555" alt="image" src="https://github.com/user-attachments/assets/34606d45-0673-4243-b96e-aca42fb7349e" />
+
+
+**Question 3**
+---
+Write a SQL statement to update the product_name as 'Grapefruit' whose product_id is 4 in the products table.
+
+products table
+
+---------------
+product_id
+product_name
+category_id
+availability
+
+```sql
+UPDATE products
+SET product_name = 'Grapefruit'
+WHERE product_id = 4;
+```
+
+**Output:**
+<img width="1208" height="316" alt="image" src="https://github.com/user-attachments/assets/94615664-2886-4acd-ac30-81a407169273" />
+
+
+**Question 4**
+---
+Write a SQL statement to Update the hire_date of employees in department 50 to 2024-01-24.
+
+Employees table
+
+---------------
+employee_id
+first_name
+last_name
+email
+phone_number
+hire_date
+job_id
+salary
+commission_pct
+manager_id
+department_id
+
+```sql
+UPDATE EMPLOYEES
+SET hire_date = '2024-01-24'
+WHERE DEPARTMENT_ID = 50;
+```
+
+**Output:**
+
+<img width="1203" height="349" alt="image" src="https://github.com/user-attachments/assets/6351933c-f915-458f-bcc5-85ed57c1b375" />
 
 
 **Question 5**
 ---
-Change the supplier name to upper case where contact person contains ' Singh' in suppliers table.
-```
-name               type
------------------  ---------------
-supplier_id        INT
-supplier_name      VARCHAR(100)
-contact_person     VARCHAR(100)
-phone_number       VARCHAR(20)
-email              VARCHAR(100)
-address            VARCHAR(250)
-```
+Write a SQL query to delete a doctor from Doctors table whose Specialization is 'Pediatrics' and First name is 'Michael'.
+
+Sample table: Doctors
+
+attributes : doctor_id, first_name, last_name, specialization
+
 ```sql
-update suppliers
-set supplier_name=UPPER(supplier_name)
-where contact_person like '%Singh%'
+DELETE FROM Doctors
+WHERE specialization = 'Pediatrics'
+  AND first_name = 'Michael';
 ```
 
 **Output:**
 
-<img width="1268" height="349" alt="image" src="https://github.com/user-attachments/assets/dcd6d062-63ec-4678-b738-d945e65e4870" />
+<img width="1203" height="466" alt="image" src="https://github.com/user-attachments/assets/3f3b4159-be00-4bb5-8d86-3b65fe58e298" />
 
 
 **Question 6**
-Write a SQL query to identify the top 3 most expensive discounted products. Return product_id, original_price, discount_percentage, and discounted_price.
+---
+Write a SQL query to Delete customers from 'customer' table where 'CUST_COUNTRY' is neither 'India' nor 'USA'.
 
-Sample table: Products
-  ```
-product_id | original_price | discount_percentage
+Sample table: Customer
 
- ------------+----------------+--------------------- 
++-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+  
+|CUST_CODE  | CUST_NAME   | CUST_CITY   | WORKING_AREA | CUST_COUNTRY | GRADE | OPENING_AMT | RECEIVE_AMT | PAYMENT_AMT |OUTSTANDING_AMT| PHONE_NO     | AGENT_CODE |
++-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+
+| C00013    | Holmes      | London      | London       | UK           |     2 |     6000.00 |     5000.00 |     7000.00 |       4000.00 | BBBBBBB      | A003       |
+| C00001    | Micheal     | New York    | New York     | USA          |     2 |     3000.00 |     5000.00 |     2000.00 |       6000.00 | CCCCCCC      | A008       |
+| C00020    | Albert      | New York    | New York     | USA          |     3 |     5000.00 |     7000.00 |     6000.00 |       6000.00 | BBBBSBB      | A008       |
 
-101 | 50.00 | 0.10 
 
-102 | 150.00 | 0.15 
 
-103 | 200.00 | 0.20 
-
-104 | 300.00 | 0.25
-```
- ```sql
-select product_id,original_price,discount_percentage,original_price*(1-discount_percentage) as discounted_price
-from products
-order by discounted_price desc
-limit 3;
+```sql
+DELETE FROM Customer
+WHERE CUST_COUNTRY NOT IN ('India', 'USA');
 ```
 
 **Output:**
 
-<img width="1091" height="277" alt="image" src="https://github.com/user-attachments/assets/51cb4ddd-a3eb-4675-a9d3-a8b5e5bd4495" />
-
+<img width="1203" height="553" alt="image" src="https://github.com/user-attachments/assets/86344463-86a4-4a6f-af44-54f45de11687" />
 
 
 **Question 7**
 ---
-Write a SQL query to Delete All Doctors with a NULL Specialization
-
-Sample table: Doctors
-
-attributes : doctor_id, first_name, last_name, specialization
+Write a SQL query to Delete customers whose 'GRADE' is greater than 2 and have a 'PAYMENT_AMT' less than the average 'PAYMENT_AMT' for all customers, or whose 'OUTSTANDING_AMT' is greater than 8000:
 
 ```sql
-delete from doctors
-where specialization is NULL
+DELETE FROM Customer
+WHERE (grade > 2 AND PAYMENT_AMT < (SELECT AVG(PAYMENT_AMT) FROM Customer))
+   OR OUTSTANDING_AMT > 8000;
 ```
 
 **Output:**
 
-<img width="1043" height="854" alt="image" src="https://github.com/user-attachments/assets/f7441dc1-d65e-47bd-afb5-26e5d3776f84" />
 
 
 **Question 8**
 ---
-Write a SQL query to Delete All Doctors whose ID ranges from 2 to 4.
+Write a SQL query to Delete customers from 'customer' table where 'GRADE' is exactly 2.
 
-Sample table: Doctors
-
-attributes : doctor_id, first_name, last_name, specialization
 ```sql
-delete from doctors
-where doctor_id between 2 and 4
+DELETE FROM Customer
+WHERE grade = 2;
 ```
 
 **Output:**
 
-<img width="1014" height="722" alt="image" src="https://github.com/user-attachments/assets/8140b152-8d3b-420c-b695-7395b2ec30a3" />
+
 
 **Question 9**
 ---
-Write a SQL query to Select all patients who were admitted during the year 2023.
-```
-Table: Patients
+Write a SQL query to Delete a Specific Surgery which was made on 28th Feb 2024.
 
-name                  type
---------------------  ----------
-patient_id            INT
-first_name            VARCHAR(50)
-last_name             VARCHAR(50)
-date_of_birth         DATE
-admission_date        DATE
-discharge_date        DATE
-doctor_id             INT
-```
 ```sql
-select patient_id,first_name,admission_date
-from patients
-where admission_date >= '2023-01-01' AND admission_date <= '2023-12-31';
+DELETE FROM Surgeries
+WHERE surgery_date = '2024-02-28';
 ```
 
 **Output:**
-
-<img width="700" height="322" alt="image" src="https://github.com/user-attachments/assets/c5c7f87f-1d28-48f2-a000-f78309f52ca1" />
 
 
 **Question 10**
 ---
-Write a SQL query to label rows in the Calculations table as 'Even' if value1 is even, otherwise 'Odd'.
-```
-cid         name        type        notnull     dflt_value  pk
-----------  ----------  ----------  ----------  ----------  ----------
-0           id          INTEGER     0                       1
-1           value1      REAL        0                       0
-2           value2      REAL        0                       0
-3           base        INTEGER     0                       0
-4           exponent    INTEGER     0                       0
-5           number      REAL        0                       0
-6           decimal     REAL        0                       0
-```
+Write a query to fetch 3 top salaried records from EmployeePosition table.
 
 ```sql
-select id,value1,
-case
-when value1%2 = 0 then 'Even'
-else 'Odd'
-end as parity
-from Calculations
+SELECT *
+FROM EmployeePosition
+ORDER BY Salary DESC
+LIMIT 3;
 ```
 
 **Output:**
 
-<img width="694" height="433" alt="image" src="https://github.com/user-attachments/assets/c75bf439-c166-4dd3-87f8-92e475d8b6f6" />
-
-
-<img width="666" height="123" alt="image" src="https://github.com/user-attachments/assets/2b16423f-096b-4942-82f6-09175f574466" />
+<img width="1206" height="360" alt="image" src="https://github.com/user-attachments/assets/edb53b3b-70cc-4493-9efa-692b4873caef" />
 
 
 ## RESULT
